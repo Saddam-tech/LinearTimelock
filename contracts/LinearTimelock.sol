@@ -266,6 +266,7 @@ contract LinearTimelock {
             // token.safeTransfer(to, amount);
             // modified to send WL
             payable(to).transfer(amount);
+            contractBalance = contractBalance.sub(amount);
             emit Transfer(address(this), to, amount);
         } else {
             // require(amount <= calculateWeiPerSecond(to).mul((block.timestamp.sub(mostRecentUnlockTimestamp[to]))), "Token amount not available for unlock right now, please try lesser amount.");
@@ -286,6 +287,7 @@ contract LinearTimelock {
             // token.safeTransfer(to, amount);
             // modified to send WL
             payable(to).transfer(amount);
+            contractBalance = contractBalance.sub(amount);
             emit Transfer(address(this), to, amount);
         }
     }
